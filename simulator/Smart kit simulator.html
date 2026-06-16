@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Year 2026 Wishes</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      font-family: "Poppins", sans-serif;
+      color: white;
+    }
+
+    /* ENTRY SCREEN */
+    #nameScreen {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 35px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px gold;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -40%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+    input {
+      padding: 12px;
+      width: 260px;
+      border-radius: 8px;
+      border: none;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 12px 25px;
+      margin-top: 15px;
+      background: linear-gradient(45deg, gold, orange);
+      color: black;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 25px gold;
+    }
+
+    /* WISH SCREEN */
+    #messageScreen {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    #wishText {
+      font-size: 55px;
+      font-weight: bold;
+      background: linear-gradient(45deg, gold, orange, red);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: glowText 2s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 20px gold; }
+      to { text-shadow: 0 0 40px red; }
+    }
+
+    /* FLOATING 2026 */
+    .year {
+      position: relative;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 80px;
+      font-weight: bold;
+      color: gold;
+      opacity: 0;
+      animation: floatYear 4s ease-in-out forwards;
+    }
+
+    @keyframes floatYear {
+      from { opacity: 0; transform: translate(-50%, -20%); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+
+    /* FIREWORKS */
+    .firework {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: white;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(4); opacity: 0; }
+    }
+
+    /* SHOOTING STARS */
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 80px;
+      background: linear-gradient(white, transparent);
+      transform: rotate(45deg);
+      animation: shoot 2s linear;
+    }
+
+    @keyframes shoot {
+      from { opacity: 1; }
+      to { transform: translate(300px, -300px) rotate(45deg); opacity: 0; }
+    }
+
+    /* FLOWERS */
+    .flower {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-size: cover;
+      animation: fall 6s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* GIFTS */
+    .gift {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      background-size: cover;
+      animation: floatGift 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatGift {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-20px); }
+    }
+
+    /* HEARTS */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      transform: rotate(45deg);
+      animation: heartFloat 4s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: pink;
+      border-radius: 50%;
+    }
+    .heart::before { left: -10px; }
+    .heart::after { top: -10px; }
+
+    @keyframes heartFloat {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+    }
+
+    /* BUTTERFLY */
+    .butterfly {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background-size: cover;
+      animation: fly 8s linear infinite;
+    }
+
+    @keyframes fly {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(300px, -300px); }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAME INPUT SCREEN -->
+  <div id="nameScreen">
+    <h2 style="color: gold; font-size: 28px;">✨ Enter Your Name ✨</h2>
+    <input type="text" id="userName" placeholder="Your Name">
+    <br>
+    <button onclick="startWish()">Start Celebration 🎉</button>
+  </div>
+
+  <!-- WISHES SCREEN -->
+  <div id="messageScreen">
+    <div class="year">✨ 2026 ✨</div>
+    <h1 id="wishText"></h1>
+    <h2 style="color: gold; margin-top: -10px">
+      🌟 Wishing you an amazing year ahead! 🌟
+    </h2>
+  </div>
+
+  <script>
+    function startWish() {
+      let name = document.getElementById("userName").value.trim();
+      if (!name) return alert("Please enter your name!");
+
+      document.getElementById("nameScreen").style.display = "none";
+      document.getElementById("messageScreen").style.display = "block";
+
+      document.getElementById("wishText").innerText =
+            `🎉 BVC Bricks 🎉
+       Wishes you a Happy New Year 
+           ${name}! `;
+
+      startFireworks();
+      startShootingStars();
+      createFlowers();
+      createGifts();
+      createHearts();
+      createButterflies();
+    }
+
+    /* FIREWORKS */
+    function startFireworks() {
+      setInterval(() => {
+        let f = document.createElement("div");
+        f.className = "firework";
+        f.style.left = Math.random() * 100 + "vw";
+        f.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 1000);
+      }, 200);
+    }
+
+    /* SHOOTING STARS */
+    function startShootingStars() {
+      setInterval(() => {
+        let s = document.createElement("div");
+        s.className = "star";
+        s.style.left = Math.random() * 100 + "vw";
+        s.style.top = Math.random() * 40 + "vh";
+        document.body.appendChild(s);
+        setTimeout(() => s.remove(), 2000);
+      }, 1500);
+    }
+
+    /* FLOWERS */
+    function createFlowers() {
+      const imgs = [
+        "https://raw.githubusercontent.com/codesignhub/free-assets/main/flowers/flower1.png",
+        "https://raw.githubusercontent.com/codesignhub/free-assets/main/flowers/flower2.png",
+        "https://raw.githubusercontent.com/codesignhub/free-assets/main/flowers/flower3.png"
+      ];
+
+      setInterval(() => {
+        let f = document.createElement("div");
+        f.className = "flower";
+        f.style.left = Math.random() * 100 + "vw";
+        f.style.backgroundImage =
+          `url(${imgs[Math.floor(Math.random() * imgs.length)]})`;
+
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 7000);
+      }, 400);
+    }
+
+    /* GIFTS */
+    function createGifts() {
+      const gifts = [
+        "https://raw.githubusercontent.com/codesignhub/free-assets/main/gifts/gift1.png",
+        "https://raw.githubusercontent.com/codesignhub/free-assets/main/gifts/gift2.png"
+      ];
+
+      for (let i = 0; i < 4; i++) {
+        let g = document.createElement("div");
+        g.className = "gift";
+        g.style.left = (10 + i * 20) + "vw";
+        g.style.bottom = "5vh";
+        g.style.backgroundImage = `url(${gifts[i % gifts.length]})`;
+        document.body.appendChild(g);
+      }
+    }
+
+    /* FLOATING HEARTS */
+    function createHearts() {
+      setInterval(() => {
+        let h = document.createElement("div");
+        h.className = "heart";
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.top = "100vh";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 4000);
+      }, 300);
+    }
+
+    /* BUTTERFLIES */
+    function createButterflies() {
+      const butterflies = [
+        "https://raw.githubusercontent.com/codesignhub/free-assets/main/butterflies/butterfly1.png",
+        "https://raw.githubusercontent.com/codesignhub/free-assets/main/butterflies/butterfly2.png"
+      ];
+
+      setInterval(() => {
+        let b = document.createElement("div");
+        b.className = "butterfly";
+        b.style.left = Math.random() * 100 + "vw";
+        b.style.top = Math.random() * 100 + "vh";
+        b.style.backgroundImage =
+          `url(${butterflies[Math.floor(Math.random() * butterflies.length)]})`;
+
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), 8000);
+      }, 2000);
+    }
+
+  </script>
+
+</body>
+</html>
